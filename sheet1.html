@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>大走势图</title>
+  <script src="js/jquery-3.1.1.js"></script>
+  <script src="js/vue.js"></script>
+  <script src="test/testsheet.js"></script>
+</head>
+<body >
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .table-style {
+      width: 1186px;
+    }
+    .first-td {
+      width: 180px;
+      height: 64px;
+      background: #f1f1f1;
+      border: 1px solid #ccc;
+    }
+    .title-td {
+      width: 700px;
+      height: 35px;
+      border: 1px solid #ccc;
+      border-left: none;
+      background: #f1f1f1;
+    }
+    .content-td {
+      width: 700px;
+      height: 28px;
+      background: #fbfbfb;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .content-td ul {
+      width: 100%;
+      display: flex; 
+    }
+    .content-td ul li {
+      width: 9.9%;
+      height: 28px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      border-right: 1px solid #ccc;
+      list-style: none;
+      border-right: 1px solid #ccc;
+    }
+    .content-td ul li:last-child {
+      border: none;
+    }
+    .content-td ul li p {
+      font-size: 14px;
+      line-height: 30px;
+    }
+    .middle-td {
+      width: 110px;
+      height: 35px;
+      border: 1px solid #ccc;
+      border-left: none;
+      background: #f1f1f1;
+    }
+    .middle-blow {
+      width: 110px;
+      height: 28px;
+      background: #fbfbfb;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .middle-blow ul {
+      width: 100%;
+      display: flex;
+    }
+    .middle-blow ul li {
+      width: 33.33%;
+      height: 28px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+      list-style: none;
+      border-right: 1px solid #ccc;
+    }
+    .middle-blow ul li:last-child {
+      border: none;
+    }
+    .middle-blow ul li p {
+      font-size: 13px;
+      line-height: 28px;
+    }
+    .little-td {
+      width: 70px;
+      height: 35px;
+      border: 1px solid #ccc;
+      border-left: none;
+      background: #f1f1f1;
+    }
+    .little-blow {
+      width: 70px;
+      height: 28px;
+      background: #fbfbfb;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .little-blow ul {
+      width: 100%;
+      display: flex;
+    }
+    .little-blow ul li {
+      width: 50%;
+      height: 28px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+      list-style: none;
+      border-right: 1px solid #ccc;
+    }
+    .little-blow ul li:last-child {
+      border: none;
+    }
+    .little-blow ul li p {
+      font-size: 13px;
+      line-height: 28px;
+    }
+    .container-div {
+      width: 180px;
+      height: 28px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+    .circle-num {
+      padding-top: 2.5px;
+    }
+    .circle-num p {
+      width: 19px;
+      height: 19px;
+      margin: auto;
+      font-size: 12px;
+      line-height: 19.5px !important;
+      border: 1.5px solid #999;
+      border-radius: 50%;
+      background: #f1f1f1;
+      text-align: center;
+      cursor: pointer;
+    }
+    .circle-num p:hover {
+      background: #e3012c !important;
+      border:1.5px solid #e3012c !important;
+      color: #fff;
+    }
+    .circle-hover {
+      background: #e3012c !important;
+      border:1.5px solid #e3012c !important;
+      color: #fff;
+    }
+    .bg {
+      background: #fff !important;
+    }
+    .nocolor {
+      color: #aaa;
+    }
+    #addcanvas canvas {
+      position: absolute;
+    }
+    .active1 {
+      width: 20px;
+      height: 20px;
+      margin: auto;
+      color: #fff;
+      font-size: 12px;
+      line-height: 19.5px !important;
+      border-radius: 50%;
+      background: #e3012c;
+      text-align: center;
+      cursor: pointer;
+    }
+  </style>
+<div id="test" style="margin-top: 120px; display: flex; justify-content: center;">
+    <table id="container" style="position: relative" cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="first-td"></td>
+          <td>
+            <div class="title-td"></div>
+            <div class="content-td">
+              <ul>
+                <li v-for="item in fTitle"><p>{{item}}</p></li>
+              </ul>
+            </div>
+          </td>
+          <td>
+            <div class="middle-td"></div>
+            <div class="middle-blow">
+              <ul>
+                <li v-for="item in dTitle"><p>{{item}}</p></li>
+              </ul>
+            </div>
+          </td>
+          <td>
+            <div class="little-td">
+
+            </div>
+            <div class="little-blow">
+              <ul>
+                <li v-for="item in sTitle"><p>{{item}}</p></li>
+              </ul>
+            </div>
+          </td>
+          <td>
+              <div class="little-td">
+  
+              </div>
+              <div class="little-blow">
+                <ul>
+                  <li v-for="item in lTitle"><p>{{item}}</p></li>
+                </ul>
+              </div>
+            </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="container-div"></div>
+          </td>
+          <td>
+              <div class="content-td bg">
+                  <ul id="gp1">
+                    <li v-for="(item,index) in fTitle ">
+                      <div class="circle-num">
+                        <p @click="showClass1(index)" :class="{'circle-hover': isClass1 === index}" class="noclass">{{item}}</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+          </td>
+          <td>
+              <div class="middle-blow bg">
+                  <ul>
+                    <li><p></p></li>
+                  </ul>
+                </div>
+          </td>
+          <td>
+              <div class="little-blow bg">
+                  <ul>
+                    <li><p></p></li>
+                  </ul>
+                </div>
+          </td>
+          <td>
+              <div class="little-blow bg">
+                  <ul>
+                    <li><p></p></li>
+                  </ul>
+                </div>
+          </td>
+        </tr>
+        <tr>
+            <td>
+              <div class="container-div"></div>
+            </td>
+            <td>
+                <div class="content-td bg">
+                    <ul>
+                      <li v-for="(item,index) in fTitle ">
+                        <div class="circle-num">
+                          <p @click="showClass2(index)" :class="{'circle-hover': isClass2 === index}">{{item}}</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+            </td>
+            <td>
+                <div class="middle-blow bg">
+                    <ul>
+                      <li><p></p></li>
+                    </ul>
+                  </div>
+            </td>
+            <td>
+                <div class="little-blow bg">
+                    <ul>
+                      <li ><p></p></li>
+                    </ul>
+                  </div>
+            </td>
+            <td>
+                <div class="little-blow bg">
+                    <ul>
+                      <li ><p></p></li>
+                    </ul>
+                  </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <div class="container-div"></div>
+            </td>
+            <td>
+                <div class="content-td bg">
+                    <ul>
+                      <li v-for="(item,index) in fTitle ">
+                        <div class="circle-num">
+                          <p @click="showClass3(index)" :class="{'circle-hover': isClass3 === index}">{{item}}</p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+            </td>
+            <td>
+                <div class="middle-blow bg">
+                    <ul>
+                      <li><p></p></li>
+                    </ul>
+                  </div>
+            </td>
+            <td>
+                <div class="little-blow bg">
+                    <ul>
+                      <li ><p></p></li>
+                    </ul>
+                  </div>
+            </td>
+            <td>
+                <div class="little-blow bg">
+                    <ul>
+                      <li ><p></p></li>
+                    </ul>
+                  </div>
+            </td>
+        </tr>
+        <tr v-for="item in numGroup">
+          <td>
+              <div class="container-div"></div>
+          </td>
+          <td>
+              <div class="content-td bg">
+                  <ul>
+                    <li v-for="items in item.title">
+
+                        <p @click="tests" :class="{active1: items.bingo}" class="nocolor">{{items.val}}</p>
+
+                    </li>
+                  </ul>
+                </div>
+          </td>
+          <td>
+              <div class="middle-blow bg">
+                  <ul>
+                    <li><p></p></li>
+                  </ul>
+                </div>
+          </td>
+          <td>
+              <div class="little-blow bg">
+                  <ul>
+                    <li ><p></p></li>
+                  </ul>
+                </div>
+          </td>
+          <td>
+              <div class="little-blow bg">
+                  <ul>
+                    <li ><p></p></li>
+                  </ul>
+                </div>
+          </td>
+        </tr>
+      </table>
+</div>
+
+<script>
+  new Vue({
+    el: '#test',
+    data: {
+      fTitle: [1,2,3,4,5,6,7,8,9,10],
+      dTitle: ['反向','重号','正向'],
+      sTitle: ['单','双'],
+      lTitle: ['大','小'],
+      numGroup: [],
+      isClass1: Number,
+      isClass2: Number,
+      isClass3: Number
+    },
+    methods: {
+      tests: function(event) {
+        console.log(event)
+      },
+      showClass1: function(index) {
+        this.isClass1 = index;
+      },
+      showClass2: function(index) {
+        this.isClass2 = index
+      },
+      showClass3: function(index) {
+        this.isClass3 = index
+      }
+    },
+    created() {
+      this.numGroup = testsheet;
+
+    },
+  })
+</script>
+<script>
+  var bingoGroup = [4,5,1,9];
+  var arr = $('.active1');
+  var loc = [];
+  var short = {}
+  for(i=0;i<arr.length;i++) {
+     
+    // if(arr[i+1].innerHTML - arr[i].innerHTML > 0) {
+
+    // }
+    console.log(arr[i])
+  }
+
+  var canvas = document.createElement('canvas');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>彩票图表走势图Demo</title>
+    <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./css/table.css" /> -->
+    <style type="text/css">
+        #main {
+            position: relative;
+            width: 1300px;
+            margin: 50px auto 0;
+        }
+        table {
+            width: 100%;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 3px 0;
+            color: #494949;
+            vertical-align: middle;
+        }
+        #title td, #head td {
+            font-weight: bold;
+        }
+        td.lhc {
+            width: 20px;
+            height: 30px;
+        }
+        span.ballOne,
+        span.ballTwo,
+        span.ballThree {
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+        span.ballOne {
+            border-radius: 50px;
+            background-color: #bd5151;
+            color: #fff;
+        }
+        span.ballTwo {
+            color: #d2b0b0;
+        }
+        span.ballThree {
+            border-radius: 50px;
+            background-color: #1c74aa;
+            color: #fff;
+        }
+        #addCanvas canvas {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <table id="biaoge">
+            <tbody>
+                <tr id="title">
+                    <td rowspan="2" colspan="5">期号</td>
+                    <td rowspan="2" colspan="5">开奖号码</td>
+                    <td colspan="10">万位</td>
+                    <td colspan="10">千位</td>
+                    <td colspan="10">百位</td>
+                    <td colspan="10">十位</td>
+                    <td colspan="10">个位</td>
+                </tr>
+                <tr id="head">
+                    <td class="lhc"><strong>0</strong></td>
+                    <td class="lhc"><strong>1</strong></td>
+                    <td class="lhc"><strong>2</strong></td>
+                    <td class="lhc"><strong>3</strong></td>
+                    <td class="lhc"><strong>4</strong></td>
+                    <td class="lhc"><strong>5</strong></td>
+                    <td class="lhc"><strong>6</strong></td>
+                    <td class="lhc"><strong>7</strong></td>
+                    <td class="lhc"><strong>8</strong></td>
+                    <td class="lhc"><strong>9</strong></td>
+                    <td class="lhc"><strong>0</strong></td>
+                    <td class="lhc"><strong>1</strong></td>
+                    <td class="lhc"><strong>2</strong></td>
+                    <td class="lhc"><strong>3</strong></td>
+                    <td class="lhc"><strong>4</strong></td>
+                    <td class="lhc"><strong>5</strong></td>
+                    <td class="lhc"><strong>6</strong></td>
+                    <td class="lhc"><strong>7</strong></td>
+                    <td class="lhc"><strong>8</strong></td>
+                    <td class="lhc"><strong>9</strong></td>
+                    <td class="lhc"><strong>0</strong></td>
+                    <td class="lhc"><strong>1</strong></td>
+                    <td class="lhc"><strong>2</strong></td>
+                    <td class="lhc"><strong>3</strong></td>
+                    <td class="lhc"><strong>4</strong></td>
+                    <td class="lhc"><strong>5</strong></td>
+                    <td class="lhc"><strong>6</strong></td>
+                    <td class="lhc"><strong>7</strong></td>
+                    <td class="lhc"><strong>8</strong></td>
+                    <td class="lhc"><strong>9</strong></td>
+                    <td class="lhc"><strong>0</strong></td>
+                    <td class="lhc"><strong>1</strong></td>
+                    <td class="lhc"><strong>2</strong></td>
+                    <td class="lhc"><strong>3</strong></td>
+                    <td class="lhc"><strong>4</strong></td>
+                    <td class="lhc"><strong>5</strong></td>
+                    <td class="lhc"><strong>6</strong></td>
+                    <td class="lhc"><strong>7</strong></td>
+                    <td class="lhc"><strong>8</strong></td>
+                    <td class="lhc"><strong>9</strong></td>
+                    <td class="lhc"><strong>0</strong></td>
+                    <td class="lhc"><strong>1</strong></td>
+                    <td class="lhc"><strong>2</strong></td>
+                    <td class="lhc"><strong>3</strong></td>
+                    <td class="lhc"><strong>4</strong></td>
+                    <td class="lhc"><strong>5</strong></td>
+                    <td class="lhc"><strong>6</strong></td>
+                    <td class="lhc"><strong>7</strong></td>
+                    <td class="lhc"><strong>8</strong></td>
+                    <td class="lhc"><strong>9</strong></td>
+                </tr>
+                <tr class="content">
+                    <td colspan="5" class="data">2017-12-14</td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                </tr>
+                <tr class="content">
+                    <td colspan="5" class="data">2017-12-14</td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                </tr>
+                <tr class="content">
+                    <td colspan="5" class="data">2017-12-14</td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballOne'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>9</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>0</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>1</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>2</span></td>
+                    <td colspan="1" class="lhc"><span class='ballThree'>3</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>4</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>5</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>6</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>7</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>8</span></td>
+                    <td colspan="1" class="lhc"><span class='ballTwo'>9</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="addCanvas"></div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        //fromLeft函数，即产生的折线是从左上角到右下角
+        function fromLeft(obj) {
+            var chartsObj = obj;
+            var w = parseInt(chartsObj.disWidth);//canvas的宽
+            var h = parseInt(chartsObj.disHeight);//canvas的高
+            var slw = parseInt(chartsObj.selfW);//单元框的宽
+            var slh = parseInt(chartsObj.selfH);//单元框的高
+            var cvsL = parseInt(chartsObj.cvsleft);//canvas的top
+            var cvsT = parseInt(chartsObj.cvsTop);//canvas的left
+            //使canvas的位置，即canvas的左上角与右下角移到两个目标单元框的中心点
+            var cvsLeft = cvsL + (slw/2);
+            var cvsTop = cvsT + (slh/2);
+ 
+ 
+            // 创建canvas标签并设置对应的样式属性
+            var canvas = document.createElement("canvas");
+            canvas.style.top = cvsTop + 'px';
+            canvas.style.left = cvsLeft + 'px';
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            canvas.width = w;
+            canvas.height = h;
+ 
+ 
+            // 创建画布，画线
+            var context = canvas.getContext("2d");//创建
+            context.beginPath();//开始画布
+            context.strokeStyle = '#69f';//设置线条颜色
+            context.lineCap = 'round';//设置线条头尾形状
+            context.lineWidth = '2';//设置线条宽度
+            context.moveTo(0,0);//移到画笔到原点(0,0)位置
+            context.lineTo(w, h);//从(0,0)位置开始画线到右下角
+            context.stroke();//填充
+            context.closePath();//关闭画布
+ 
+ 
+            // 把创建好的canvas插入页面
+            $("#addCanvas").append(canvas)
+        }
+        //fromRight函数，即产生的折线是从右上角到左下角
+        function fromRight(obj) {
+            var chartsObj = obj;
+            var w = parseInt(chartsObj.disWidth);
+            var h = parseInt(chartsObj.disHeight);
+            var slw = parseInt(chartsObj.selfW);
+            var slh = parseInt(chartsObj.selfH);
+            var cvsL = parseInt(chartsObj.cvsleft);
+            var cvsT = parseInt(chartsObj.cvsTop);
+            var cvsLeft = cvsL + (slw/2) - w;
+            var cvsTop = cvsT + (slh/2);
+ 
+ 
+            // 创建canvas标签并设置对应的样式属性
+            var canvas = document.createElement("canvas");
+            canvas.style.top = cvsTop + 'px';
+            canvas.style.left = cvsLeft + 'px';
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            canvas.width = w;
+            canvas.height = h;
+ 
+ 
+            // 创建画布，画线
+            var context = canvas.getContext("2d");
+            context.beginPath();
+            context.strokeStyle = '#69f';
+            context.lineCap = 'round';
+            context.lineWidth = '2';
+            context.moveTo(w,0);
+            context.lineTo(0, h);
+            context.stroke();
+            context.closePath();
+ 
+ 
+            // 把创建好的canvas插入页面
+            $("#addCanvas").append(canvas)
+        }
+        var brr = $(".content .ballThree").parent();
+
+        //声明chartsObj空对象，用于存储需要传入函数的参数
+        var chartsObj = {};
+        for (var i = 0; i <10; i++) {
+            // 判断本期的中奖号码第一位数与下一期中奖号码第一位数谁大谁小
+            var direction = brr[i].offsetLeft - brr[i + 5].offsetLeft;
+            //获取本期的中奖号码第一位与下一期中奖号码第一位两球外框单元格的上边的距离绝对值
+            chartsObj.disHeight = Math.abs(brr[i].offsetTop - brr[i + 5].offsetTop)
+            //获取本期的中奖号码第一位与下一期中奖号码第一位两球外框单元格的左侧的距离绝对值
+            chartsObj.disWidth = Math.abs(brr[i].offsetLeft - brr[i + 5].offsetLeft)
+            //获取球外框单元格的自身高度
+            chartsObj.selfW = brr[i].clientWidth;
+            //获取球外框单元格的自身宽度
+            chartsObj.selfH = brr[i].clientHeight;
+            //获取canvas的position的top的值，根据当前球的外框的offsetTop来决定
+            chartsObj.cvsTop = brr[i].offsetTop;
+            //获取canvas的position的left的值，根据当前球的外框的offsetLeft来决定
+            chartsObj.cvsleft = brr[i].offsetLeft;
+            //根据上面变量direction的正负来判断执行哪个函数
+            if(direction < 0) {
+                fromLeft(chartsObj);
+            } else {
+                fromRight(chartsObj);
+            }
+            
+        }
+        console.log(chartsObj)
+    </script>
+</body>
+</html>

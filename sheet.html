@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.1.1.js"></script>
+    <script src="https://unpkg.com/avalon2@2.2.8/dist/avalon.js"></script>
+    <script>
+      var vm = avalon.define({
+        $id: 'sheets'
+      })
+      console.log(vm)
+    </script>
+  </head>
+  <body ms-controller="sheets">
+    <style>
+    .little-font {
+      font-size: 12px;
+      color: #000;
+    }
+    .tb {
+      border: 1px solid #ccc;
+    }
+    .lang {
+      height: 35px;
+      width: 700px;
+    }
+    .short {
+      height: 35px;
+      width: 100px;
+      margin: 0;
+      padding: 0;
+    }
+    .col {
+      height: 70px;
+      border: 1px solid #ccc;
+    }
+    .eol {
+      height: 25px;
+    }
+    .dol {
+      width: 180px;
+      padding: 0 20px;
+    }
+    table tr {
+      text-align: center;
+    }
+    .labol ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .labol ul li {
+      width: 71px;
+      height: 35px;
+      border-right: 1px solid #ccc;
+      text-align: center;
+      list-style: none;
+    }
+    .labol ul li:last-child {
+      border-right: none !important;
+    }
+    .labol ul li p {
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 10px;   
+    }
+    .labol {
+      height: 35px;
+      width: 720px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    .sabol {
+      height: 35px;
+      width: 140px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    .sabol ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .sabol ul li {
+      width: 71px;
+      height: 35px;
+      border-right: 1px solid #ccc;
+      text-align: center;
+      list-style: none;
+    }
+    .sabol ul li:last-child {
+      border-right: none !important;
+    }
+    .sabol ul li p {
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 10px;   
+    }
+    .eabol {
+      height: 40px;
+      width: 140px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    .eabol ul {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    .eabol ul li {
+      width: 71px;
+      height: 40px;
+      border-right: 1px solid #ccc;
+      text-align: center;
+      list-style: none;
+    }
+    .eabol ul li:last-child {
+      border-right: none !important;
+    }
+    .eabol ul li p {
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 10px;   
+    }
+    .spe-height {
+      height: 42px !important;
+    }
+    .spe-line {
+      line-height: 16px !important;
+    }
+    /* table tr td {
+      border: 1px solid #ccc;
+    } */
+    </style>
+    <table cellspacing="0" cellpadding="0">
+      <tr class="col">
+        <td style="background: #f1f1f1;" class="dol">
+          <p>统计类型</p>
+        </td>
+        <td style="background: #f1f1f1" class="lang">
+          <div class="labol" style="border-bottom: none">
+            <p class="little-font">冠军</p>
+          </div>
+          <div class="labol">
+            <ul>
+              <li><p>1</p></li>
+              <li><p>2</p></li>
+              <li><p>3</p></li>
+              <li><p>4</p></li>
+              <li><p>5</p></li>
+              <li><p>6</p></li>
+              <li><p>7</p></li>
+              <li><p>8</p></li>
+              <li><p>9</p></li>
+              <li><p>10</p></li>
+            </ul>
+          </div>
+        </td>
+        <td class="short">
+          <div class="sabol">
+            <p class="little-font">回摆(*)</p>
+          </div>
+          <div class="sabol">
+            <ul>
+              <li><p>反向</p></li>
+              <li><p>重号</p></li>
+              <li><p>正向</p></li>
+            </ul>
+          </div>
+        </td>
+        <td style="width: 90px" class="short">
+          <div style="width: 90px" class="sabol">
+            <p class="little-font">单双</p>
+          </div>
+          <div style="width: 90px" class="sabol">
+            <ul>
+              <li><p>单</p></li>
+              <li><p>双</p></li>
+            </ul>
+          </div>
+        </td>
+        <td class="short">
+          <div style="width: 90px" class="sabol">
+            <p class="little-font">大小</p>
+          </div>
+          <div style="width: 90px" class="sabol">
+            <ul>
+              <li><p>大</p></li>
+              <li><p>小</p></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr class="eol">
+        <td style="border: 1px solid #ccc; border-right: none" class="dol">
+          <p class="little-font">总次数</p>
+        </td>
+        <td class="lang">
+          <div style="height: 41px; border-top: none;" class="labol">
+            <ul id="sign">
+
+            </ul>
+          </div>
+        </td>
+        <td class="short">
+          <div class="eabol">
+            <ul>
+              <li><p>222</p></li>
+              <li><p>2</p></li>
+              <li><p>2</p></li>
+            </ul>
+          </div>
+        </td>
+        <td style="width: 90px" class="short">
+          <div style="width: 90px" class="eabol">
+            <ul>
+              <li><p>222</p></li>
+              <li><p>23</p></li>
+            </ul>
+          </div>
+        </td>
+        <td style="width: 90px" class="short">
+          <div style="width: 90px" class="eabol">
+            <ul>
+              <li><p>222</p></li>
+              <li><p>23</p></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr class="eol">
+        <td style="border: 1px solid #ccc; border-right: none; border-top:none"
+          class="dol">
+          <p class="little-font">最大遗漏</p>
+        </td>
+        <td class="lang">
+          <div style="height: 41px; border-top: none;" class="labol">
+            <ul id="sign1">
+
+            </ul>
+          </div>
+        </td>
+        <td class="short">
+          <div class="eabol">
+            <ul>
+              <li><p>222</p></li>
+              <li><p>23</p></li>
+              <li><p>44</p></li>
+            </ul>
+          </div>
+        </td>
+        <td style="width: 90px" class="short">
+          <div style="width: 90px" class="eabol">
+            <ul>
+              <li><p>222</p></li>
+              <li><p>23</p></li>
+            </ul>
+          </div>
+        </td>
+        <td style="width: 90px" class="short">
+          <div style="width: 90px" class="eabol">
+            <ul>
+              <li><p>222</p></li>
+              <li><p>23</p></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <p>{{}}</p>
+    <script src="./js/sheet1.js"></script>
+
+  </body>
+</html>
