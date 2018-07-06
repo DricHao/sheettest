@@ -55,4 +55,18 @@ var testsheet = [
       {val: 4, bingo: false}
     ]
   },
+  {
+    title: [
+      {val: 12, bingo: false},
+      {val: 2, bingo: true},
+      {val: 63, bingo: false},
+      {val: 9, bingo: false},
+      {val: 11, bingo: false},
+      {val: 32, bingo: false},
+      {val: 41, bingo: false},
+      {val: 19, bingo: false},
+      {val: 8, bingo: false},
+      {val: 1, bingo: false}
+    ]
+  },
 ]

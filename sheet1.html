@@ -164,6 +164,7 @@
     }
     #addcanvas canvas {
       position: absolute;
+      background: #ccc;
     }
     .active1 {
       width: 20px;
@@ -408,15 +409,29 @@
   var arr = $('.active1');
   var loc = [];
   var short = {}
-  for(i=0;i<arr.length;i++) {
-     
-    // if(arr[i+1].innerHTML - arr[i].innerHTML > 0) {
+  function draw(obj) {
 
-    // }
-    console.log(arr[i])
+      var canvas = document.createElement('canvas');
+      canvas.style.top = s
+  };
+
+  for(i=0;i<arr.length-1;i++) {
+    var a =  Number(arr[i+1].innerHTML);
+    var b = Number(arr[i].innerHTML);
+    var qu = a - b;
+    if(qu>0) {
+      short.selfLeft = 182 + 70*(b-1) + 45 + 'px';
+      short.selfTop = 149 + 28*(i) + 14 + 'px';
+      short.selfWidth = Math.abs(a-b-1)*70 + 50 + 'px';
+      short.selfHeight 
+    } else {
+      short.selfLeft = 182 + 70*(a-1) + 45 + 'px';
+      short.selfTop = 149 + 28*(i) + 14 + 'px';
+      short.selfWidth = Math.abs(a-b-1)*70 + 50 + 'px';
+    }
+    console.log(short)
   }
 
-  var canvas = document.createElement('canvas');
 
 </script>
 </body>
