@@ -396,6 +396,7 @@
       ball1: null,
       varify1: [],
       varify2: [],
+      varify3: []
     },
     methods: {
       drawLeft: function(obj) {
@@ -456,14 +457,71 @@
 
       showClass1: function(index) {
         this.isClass1 = index;
+        this.ball1 = index + 1;
+        if(this.ball3 === null || this.ball2 === null) {
+          return false
+        } else {
+          if(this.varify3.indexOf(index) === -1) {
+          this.varify3.splice(0,1);
+          this.varify3.push(index);
+          var t = document.getElementById('container');
+          var p = document.getElementsByClassName('sign3');
+          for(i=0;i<p.length;i++) {
+            t.removeChild(p[i])
+          }
+          
+          this.isClass1 = index;
+          // var arr = document.getElementsByClassName('active1')[0];
+          var short = {};
+
+          var a =  index+1;
+          var b = this.ball2;
+          var qu = a - b;
+          if(qu>0) {
+            short.selfLeft = 178 + 70*(b-1) + 40 ;
+            short.selfTop = 77;
+            short.selfWidth = Math.abs(a-b-1)*70 + 56;
+            short.selfHeight = 28;
+            short.sign = 'sign3';
+            this.$options.methods.drawRight(short)
+          } else if(qu === 0) {
+            short.selfLeft = 178 + 70*(b-1) + 34 ;
+            short.selfTop = 77;
+            short.selfWidth = 2;
+            short.selfHeight = 28;
+            short.sign = 'sign3';
+            this.$options.methods.drawLeft(short)
+          }
+          else {
+            short.selfLeft = 178 + 70*(a-1) + 40;
+            short.selfTop = 77;
+            short.selfWidth = Math.abs(b-a-1)*70 + 56;
+            short.selfHeight = 28;
+            short.sign = 'sign3';
+            this.$options.methods.drawLeft(short)
+        
+          }
+          
+        } else {
+          this.isClass1 = null;
+          this.varify3.splice(0);
+          var t = document.getElementById('container');
+          var p = document.getElementsByClassName('sign3');
+          for(i=0;i<p.length;i++) {
+            t.removeChild(p[i])
+          }
+        }
+        
+        }
       },
       showClass2: function(index) {
         this.isClass2 = index;
-
+        this.ball2 = index + 1;
         if(this.ball3 === null) {
           return false
         } else {
           if(this.varify2.indexOf(index) === -1) {
+          this.varify2.splice(0,1);
           this.varify2.push(index);
           var t = document.getElementById('container');
           var p = document.getElementsByClassName('sign2');
@@ -518,6 +576,7 @@
       showClass3: function(index) {
         this.ball3 = index+1;
         if(this.varify1.indexOf(index) === -1) {
+          this.varify1.splice(0,1);
           this.varify1.push(index);
           var t = document.getElementById('container');
           var p = document.getElementsByClassName('sign1');
