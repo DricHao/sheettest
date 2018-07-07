@@ -456,7 +456,6 @@
         },
 
       showClass1: function(index) {
-        this.isClass1 = index;
         this.ball1 = index + 1;
         if(this.ball3 === null || this.ball2 === null) {
           return false
@@ -505,6 +504,7 @@
         } else {
           this.isClass1 = null;
           this.varify3.splice(0);
+          this.ball1 = null;
           var t = document.getElementById('container');
           var p = document.getElementsByClassName('sign3');
           for(i=0;i<p.length;i++) {
@@ -517,6 +517,9 @@
       showClass2: function(index) {
         this.isClass2 = index;
         this.ball2 = index + 1;
+        if(this.ball1 !== null) {
+          return false
+        }
         if(this.ball3 === null) {
           return false
         } else {
@@ -563,6 +566,7 @@
           
         } else {
           this.isClass2 = null;
+          this.ball2 = null;
           this.varify2.splice(0);
           var t = document.getElementById('container');
           var p = document.getElementsByClassName('sign2');
@@ -575,6 +579,9 @@
       },
       showClass3: function(index) {
         this.ball3 = index+1;
+        if(this.ball1 !== null || this.ball2 !== null) {
+          return false
+        }
         if(this.varify1.indexOf(index) === -1) {
           this.varify1.splice(0,1);
           this.varify1.push(index);
