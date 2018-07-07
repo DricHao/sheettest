@@ -14,6 +14,7 @@
     * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
     .table-style {
       width: 1186px;
@@ -139,7 +140,7 @@
       height: 19px;
       margin: auto;
       font-size: 12px;
-      line-height: 19.5px !important;
+      line-height: 16.5px !important;
       border: 1.5px solid #999;
       border-radius: 50%;
       background: #f1f1f1;
@@ -162,9 +163,16 @@
     .nocolor {
       color: #aaa;
     }
-    #addcanvas canvas {
+    #container {
+      position: relative !important;
+    }
+    #addcanvas  {
       position: absolute;
       background: #ccc;
+    }
+    canvas {
+      position: absolute;
+      /* background: #ccc; */
     }
     .active1 {
       width: 20px;
@@ -402,37 +410,82 @@
       this.numGroup = testsheet;
 
     },
+    mounted() {
+      var bingoGroup = [4,5,1,9];
+      var arr = document.getElementsByClassName('active1');
+      var loc = [];
+      var short = {}
+      function drawLeft(obj) {
+
+          var canvas = document.createElement('canvas');
+          canvas.style.top = obj.selfTop + 'px';
+          canvas.style.left = obj.selfLeft + 'px';
+          // canvas.style.width = obj.selfWidth + 'px';
+          // canvas.style.height = obj.selfHeight + 'px';
+          canvas.width = obj.selfWidth;
+          canvas.height = obj.selfHeight;
+
+          var context = canvas.getContext('2d');
+          context.beginPath();
+          context.strokeStyle = '#cd880e';
+          context.lineCap = 'round';
+          context.lineWidth = '2';
+          context.moveTo(0,0);
+          context.lineTo(obj.selfWidth,obj.selfHeight);
+          context.stroke();
+          context.closePath();
+          $('#container').append(canvas);
+      };
+      function drawRight(obj) {
+
+          var canvas = document.createElement('canvas');
+          canvas.style.top = obj.selfTop + 'px';
+          canvas.style.left = obj.selfLeft + 'px';
+          // canvas.style.width = obj.selfWidth + 'px';
+          // canvas.style.height = obj.selfHeight + 'px';
+          canvas.width = obj.selfWidth;
+          canvas.height = obj.selfHeight;
+
+          var context = canvas.getContext('2d');
+          context.beginPath();
+          context.strokeStyle = '#cd880e';
+          context.lineCap = 'round';
+          context.lineWidth = '2';
+          context.moveTo(obj.selfWidth,0);
+          context.lineTo(0,obj.selfHeight);
+          context.stroke();
+          context.closePath();
+          $('#container').append(canvas);
+      };
+
+      for(i=0;i<arr.length-1;i++) {
+        var a =  Number(arr[i+1].innerHTML);
+        var b = Number(arr[i].innerHTML);
+        var qu = a - b;
+        if(qu>0) {
+          short.selfLeft = 178 + 70*(b-1) + 40 ;
+          short.selfTop = 149 + 28*(i) + 14 ;
+          short.selfWidth = Math.abs(a-b-1)*70 + 56;
+          short.selfHeight = 28;
+          drawLeft(short)
+        } else if(qu === 0) {
+          short.selfLeft = 178 + 70*(b-1) + 34 ;
+          short.selfTop = 149 + 28*(i) + 14 ;
+          short.selfWidth = 2;
+          short.selfHeight = 28;
+          drawLeft(short)
+        }
+        else {
+          short.selfLeft = 178 + 70*(a-1) + 40;
+          short.selfTop = 149 + 28*(i) + 14;
+          short.selfWidth = Math.abs(b-a-1)*70 + 56;
+          short.selfHeight = 18;
+
+          drawRight(short)
+        }
+      }
+    },
   })
-</script>
-<script>
-  var bingoGroup = [4,5,1,9];
-  var arr = $('.active1');
-  var loc = [];
-  var short = {}
-  function draw(obj) {
-
-      var canvas = document.createElement('canvas');
-      canvas.style.top = s
-  };
-
-  for(i=0;i<arr.length-1;i++) {
-    var a =  Number(arr[i+1].innerHTML);
-    var b = Number(arr[i].innerHTML);
-    var qu = a - b;
-    if(qu>0) {
-      short.selfLeft = 182 + 70*(b-1) + 45 + 'px';
-      short.selfTop = 149 + 28*(i) + 14 + 'px';
-      short.selfWidth = Math.abs(a-b-1)*70 + 50 + 'px';
-      short.selfHeight 
-    } else {
-      short.selfLeft = 182 + 70*(a-1) + 45 + 'px';
-      short.selfTop = 149 + 28*(i) + 14 + 'px';
-      short.selfWidth = Math.abs(a-b-1)*70 + 50 + 'px';
-    }
-    console.log(short)
-  }
-
-
 </script>
 </body>
 </html>
