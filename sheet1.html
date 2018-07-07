@@ -273,7 +273,7 @@
                 <div class="content-td bg">
                     <ul>
                       <li v-for="(item,index) in fTitle ">
-                        <div class="circle-num">
+                        <div id="sss" class="circle-num">
                           <p @click="showClass2(index)" :class="{'circle-hover': isClass2 === index}">{{item}}</p>
                         </div>
                       </li>
@@ -394,12 +394,19 @@
       ball3: null,
       ball2: null,
       ball1: null,
-      varify1: []
+      varify1: [],
+      varify2: [],
     },
     methods: {
       drawLeft: function(obj) {
         var canvas = document.createElement('canvas');
-        canvas.className = 'sign1';
+        if(obj.sign === 'sign1') {
+          canvas.className = 'sign1';
+        } else if(obj.sign === 'sign2'){
+          canvas.className = 'sign2'
+        } else {
+          canvas.className = 'sign3'
+        }
         canvas.style.top = obj.selfTop + 'px';
         canvas.style.left = obj.selfLeft + 'px';
         // canvas.style.width = obj.selfWidth + 'px';
@@ -421,7 +428,13 @@
       drawRight: function (obj) {
 
         var canvas = document.createElement('canvas');
-        canvas.className = 'sign1';
+        if(obj.sign === 'sign1') {
+          canvas.className = 'sign1';
+        } else if(obj.sign === 'sign2'){
+          canvas.className = 'sign2'
+        } else {
+          canvas.className = 'sign3'
+        }
         canvas.style.top = obj.selfTop + 'px';
         canvas.style.left = obj.selfLeft + 'px';
         // canvas.style.width = obj.selfWidth + 'px';
@@ -445,10 +458,65 @@
         this.isClass1 = index;
       },
       showClass2: function(index) {
-        this.isClass2 = index
+        this.isClass2 = index;
+
+        if(this.ball3 === null) {
+          return false
+        } else {
+          if(this.varify2.indexOf(index) === -1) {
+          this.varify2.push(index);
+          var t = document.getElementById('container');
+          var p = document.getElementsByClassName('sign2');
+          for(i=0;i<p.length;i++) {
+            t.removeChild(p[i])
+          }
+          
+          this.isClass2 = index;
+          // var arr = document.getElementsByClassName('active1')[0];
+          var short = {};
+
+          var a =  index+1;
+          var b = this.ball3;
+          var qu = a - b;
+          if(qu>0) {
+            short.selfLeft = 178 + 70*(b-1) + 40 ;
+            short.selfTop = 105;
+            short.selfWidth = Math.abs(a-b-1)*70 + 56;
+            short.selfHeight = 28;
+            short.sign = 'sign2';
+            this.$options.methods.drawRight(short)
+          } else if(qu === 0) {
+            short.selfLeft = 178 + 70*(b-1) + 34 ;
+            short.selfTop = 105;
+            short.selfWidth = 2;
+            short.selfHeight = 28;
+            short.sign = 'sign2';
+            this.$options.methods.drawLeft(short)
+          }
+          else {
+            short.selfLeft = 178 + 70*(a-1) + 40;
+            short.selfTop = 105;
+            short.selfWidth = Math.abs(b-a-1)*70 + 56;
+            short.selfHeight = 28;
+            short.sign = 'sign2';
+            this.$options.methods.drawLeft(short)
+        
+          }
+          
+        } else {
+          this.isClass2 = null;
+          this.varify2.splice(0);
+          var t = document.getElementById('container');
+          var p = document.getElementsByClassName('sign2');
+          for(i=0;i<p.length;i++) {
+            t.removeChild(p[i])
+          }
+        }
+        
+        }
       },
       showClass3: function(index) {
-        this.ball3 = index;
+        this.ball3 = index+1;
         if(this.varify1.indexOf(index) === -1) {
           this.varify1.push(index);
           var t = document.getElementById('container');
@@ -469,13 +537,14 @@
             short.selfTop = 133;
             short.selfWidth = Math.abs(a-b-1)*70 + 56;
             short.selfHeight = 28;
-            
+            short.sign = 'sign1';
             this.$options.methods.drawRight(short)
           } else if(qu === 0) {
             short.selfLeft = 178 + 70*(b-1) + 34 ;
             short.selfTop = 133;
             short.selfWidth = 2;
             short.selfHeight = 28;
+            short.sign = 'sign1';
             this.$options.methods.drawLeft(short)
           }
           else {
@@ -483,11 +552,13 @@
             short.selfTop = 133;
             short.selfWidth = Math.abs(b-a-1)*70 + 56;
             short.selfHeight = 28;
+            short.sign = 'sign1';
             this.$options.methods.drawLeft(short)
         
           }
         } else {
           this.isClass3 = null;
+          this.ball3 = null;
           this.varify1.splice(0);
           var t = document.getElementById('container');
           var p = document.getElementsByClassName('sign1');
@@ -498,43 +569,7 @@
         
       },
       
-      showClass2: function(index) {
-        var t = document.getElementById('container');
-        var p = document.getElementsByClassName('sign1');
-        for(i=0;i<p.length;i++) {
-          t.removeChild(p[i])
-        }
-        
-        this.isClass3 = index;
-        var arr = document.getElementsByClassName('active1')[0];
-        var short = {};
 
-        var a =  index+1;
-        var b = Number(arr.innerHTML);
-        var qu = a - b;
-        if(qu>0) {
-          short.selfLeft = 178 + 70*(b-1) + 40 ;
-          short.selfTop = 133;
-          short.selfWidth = Math.abs(a-b-1)*70 + 56;
-          short.selfHeight = 28;
-          
-          this.$options.methods.drawRight(short)
-        } else if(qu === 0) {
-          short.selfLeft = 178 + 70*(b-1) + 34 ;
-          short.selfTop = 133;
-          short.selfWidth = 2;
-          short.selfHeight = 28;
-          this.$options.methods.drawLeft(short)
-        }
-        else {
-          short.selfLeft = 178 + 70*(a-1) + 40;
-          short.selfTop = 133;
-          short.selfWidth = Math.abs(b-a-1)*70 + 56;
-          short.selfHeight = 28;
-          this.$options.methods.drawLeft(short)
-      
-        }
-      },
     },
     created: function() {
       this.numGroup = testsheet;
