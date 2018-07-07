@@ -454,7 +454,6 @@
         context.closePath();
         $('#container').append(canvas);
         },
-
       showClass1: function(index) {
         this.ball1 = index + 1;
         if(this.ball3 === null || this.ball2 === null) {
@@ -467,8 +466,7 @@
           var p = document.getElementsByClassName('sign3');
           for(i=0;i<p.length;i++) {
             t.removeChild(p[i])
-          }
-          
+          }          
           this.isClass1 = index;
           // var arr = document.getElementsByClassName('active1')[0];
           var short = {};
@@ -573,8 +571,7 @@
           for(i=0;i<p.length;i++) {
             t.removeChild(p[i])
           }
-        }
-        
+        }        
         }
       },
       showClass3: function(index) {
@@ -589,8 +586,7 @@
           var p = document.getElementsByClassName('sign1');
           for(i=0;i<p.length;i++) {
             t.removeChild(p[i])
-          }
-          
+          }          
           this.isClass3 = index;
           var arr = document.getElementsByClassName('active1')[0];
           var short = {};
@@ -632,10 +628,7 @@
             t.removeChild(p[i])
           }
         }
-        
       },
-      
-
     },
     created: function() {
       this.numGroup = testsheet;
@@ -645,7 +638,6 @@
       var arr = document.getElementsByClassName('active1');
       var short = {}
       function drawLeft(obj) {
-
           var canvas = document.createElement('canvas');
           canvas.style.top = obj.selfTop + 'px';
           canvas.style.left = obj.selfLeft + 'px';
@@ -653,7 +645,6 @@
           // canvas.style.height = obj.selfHeight + 'px';
           canvas.width = obj.selfWidth;
           canvas.height = obj.selfHeight;
-
           var context = canvas.getContext('2d');
           context.beginPath();
           context.strokeStyle = '#cd880e';
@@ -666,7 +657,6 @@
           $('#container').append(canvas);
       };
       function drawRight(obj) {
-
           var canvas = document.createElement('canvas');
           canvas.style.top = obj.selfTop + 'px';
           canvas.style.left = obj.selfLeft + 'px';
@@ -674,7 +664,6 @@
           // canvas.style.height = obj.selfHeight + 'px';
           canvas.width = obj.selfWidth;
           canvas.height = obj.selfHeight;
-
           var context = canvas.getContext('2d');
           context.beginPath();
           context.strokeStyle = '#cd880e';
@@ -686,7 +675,6 @@
           context.closePath();
           $('#container').append(canvas);
       };
-
       for(i=0;i<arr.length-1;i++) {
         var a =  Number(arr[i+1].innerHTML);
         var b = Number(arr[i].innerHTML);
